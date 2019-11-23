@@ -6,7 +6,7 @@ package fracCalc;
 import java.util.*;
 public class FracCalc {
 	
-	// checkpoint 1
+	// checkpoint 2
 
     public static void main(String[] args)
     {
@@ -35,37 +35,39 @@ public class FracCalc {
     		}
     	} 
     	
-    	return secondValue;
-//    	
-//        	
-//    	if (firstValue.indexOf("_") >= 0 && firstValue.indexOf("/") >= 0) {
-//    		firstWhole = firstValue.substring(0, firstValue.indexOf("_"));
-//    		firstNumerator = firstValue.substring(firstValue.indexOf("_")+1, firstValue.indexOf("_")+2);
-//    		firstDenominator = firstValue.substring(firstValue.indexOf("/")+1, firstValue.indexOf("/")+2);
-//    	} else if (firstValue.indexOf("_") < 0 && firstValue.indexOf("/") >= 0) {
-//    		firstWhole = "0";
-//    		firstNumerator = firstValue.substring(0, firstValue.indexOf("/"));
-//    		firstDenominator = firstValue.substring(firstValue.indexOf("/")+1, firstValue.length());
-//    	} else if (firstValue.indexOf("_") < 0 && firstValue.indexOf("/") < 0) {
-//    		firstWhole = firstValue;
-//    		firstNumerator = "0";
-//    		firstDenominator = "1";
-//    	}
-//    	
-//    	if (secondValue.indexOf("_") >= 0 && secondValue.indexOf("/") >= 0) {
-//    		secondWhole = secondValue.substring(0, secondValue.indexOf("_"));
-//    		secondNumerator = secondValue.substring(secondValue.indexOf("_")+1, secondValue.indexOf("_")+2);
-//    		secondDenominator = secondValue.substring(secondValue.indexOf("/")+1, secondValue.indexOf("/")+2);
-//    	} else if (secondValue.indexOf("_") < 0 && secondValue.indexOf("/") >= 0) {
-//    		secondWhole = "0";
-//    		secondNumerator = secondValue.substring(0, secondValue.indexOf("/"));
-//    		secondDenominator = secondValue.substring(secondValue.indexOf("/")+1, secondValue.length());
-//    	} else if (secondValue.indexOf("_") < 0 && secondValue.indexOf("/") < 0) {
-//    		secondWhole = secondValue;
-//    		secondNumerator = "0";
-//    		secondDenominator = "1";
-//    	}   
-//    	
+    	
+    	
+        	
+    	if (firstValue.indexOf("_") >= 0 && firstValue.indexOf("/") >= 0) {
+    		firstWhole = firstValue.substring(0, firstValue.indexOf("_"));
+    		firstNumerator = firstValue.substring(firstValue.indexOf("_")+1, firstValue.indexOf("_")+2);
+    		firstDenominator = firstValue.substring(firstValue.indexOf("/")+1, firstValue.indexOf("/")+2);
+    	} else if (firstValue.indexOf("_") < 0 && firstValue.indexOf("/") >= 0) {
+    		firstWhole = "0";
+    		firstNumerator = firstValue.substring(0, firstValue.indexOf("/"));
+    		firstDenominator = firstValue.substring(firstValue.indexOf("/")+1, firstValue.length());
+    	} else if (firstValue.indexOf("_") < 0 && firstValue.indexOf("/") < 0) {
+    		firstWhole = firstValue;
+    		firstNumerator = "0";
+    		firstDenominator = "1";
+    	}
+    	
+    	if (secondValue.indexOf("_") >= 0 && secondValue.indexOf("/") >= 0) {
+    		secondWhole = secondValue.substring(0, secondValue.indexOf("_"));
+    		secondNumerator = secondValue.substring(secondValue.indexOf("_")+1, secondValue.indexOf("_")+2);
+    		secondDenominator = secondValue.substring(secondValue.indexOf("/")+1, secondValue.indexOf("/")+2);
+    	} else if (secondValue.indexOf("_") < 0 && secondValue.indexOf("/") >= 0) {
+    		secondWhole = "0";
+    		secondNumerator = secondValue.substring(0, secondValue.indexOf("/"));
+    		secondDenominator = secondValue.substring(secondValue.indexOf("/")+1, secondValue.length());
+    	} else if (secondValue.indexOf("_") < 0 && secondValue.indexOf("/") < 0) {
+    		secondWhole = secondValue;
+    		secondNumerator = "0";
+    		secondDenominator = "1";
+    	}   
+    	
+    	return "whole:" + secondWhole + " numerator:" + secondNumerator + " denominator:" + secondDenominator;
+    	
 //    	int firstNumer;
 //    	int secondNumer;
 //    	
