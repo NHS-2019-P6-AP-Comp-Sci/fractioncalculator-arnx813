@@ -40,8 +40,8 @@ public class FracCalc {
         	
     	if (firstValue.indexOf("_") >= 0 && firstValue.indexOf("/") >= 0) {
     		firstWhole = firstValue.substring(0, firstValue.indexOf("_"));
-    		firstNumerator = firstValue.substring(firstValue.indexOf("_")+1, firstValue.indexOf("_")+2);
-    		firstDenominator = firstValue.substring(firstValue.indexOf("/")+1, firstValue.indexOf("/")+2);
+    		firstNumerator = firstValue.substring(firstValue.indexOf("_")+1, firstValue.indexOf("/"));
+    		firstDenominator = firstValue.substring(firstValue.indexOf("/")+1, firstValue.length());
     	} else if (firstValue.indexOf("_") < 0 && firstValue.indexOf("/") >= 0) {
     		firstWhole = "0";
     		firstNumerator = firstValue.substring(0, firstValue.indexOf("/"));
@@ -54,8 +54,8 @@ public class FracCalc {
     	
     	if (secondValue.indexOf("_") >= 0 && secondValue.indexOf("/") >= 0) {
     		secondWhole = secondValue.substring(0, secondValue.indexOf("_"));
-    		secondNumerator = secondValue.substring(secondValue.indexOf("_")+1, secondValue.indexOf("_")+2);
-    		secondDenominator = secondValue.substring(secondValue.indexOf("/")+1, secondValue.indexOf("/")+2);
+    		secondNumerator = secondValue.substring(secondValue.indexOf("_")+1, secondValue.indexOf("/"));
+    		secondDenominator = secondValue.substring(secondValue.indexOf("/")+1, secondValue.length());
     	} else if (secondValue.indexOf("_") < 0 && secondValue.indexOf("/") >= 0) {
     		secondWhole = "0";
     		secondNumerator = secondValue.substring(0, secondValue.indexOf("/"));
@@ -66,43 +66,39 @@ public class FracCalc {
     		secondDenominator = "1";
     	}   
     	
-    	return "whole:" + secondWhole + " numerator:" + secondNumerator + " denominator:" + secondDenominator;
+//    	return "whole:" + secondWhole + " numerator:" + secondNumerator + " denominator:" + secondDenominator;
     	
-//    	int firstNumer;
-//    	int secondNumer;
-//    	
-//    	if (Integer.parseInt(firstWhole) < 0) {
-//    		firstNumer = (Integer.parseInt(secondDenominator)*(Integer.parseInt(firstDenominator) * (Integer.parseInt(firstWhole)*-1) + Integer.parseInt(firstNumerator)))*-1;
-//    	} else {
-//    		firstNumer = Integer.parseInt(secondDenominator)*(Integer.parseInt(firstDenominator) * Integer.parseInt(firstWhole) + Integer.parseInt(firstNumerator));
-//    	}
-//    	
-//    	if (Integer.parseInt(secondWhole) < 0) {
-//    		secondNumer = (Integer.parseInt(firstDenominator)*(Integer.parseInt(secondDenominator) * (Integer.parseInt(secondWhole)*-1) + Integer.parseInt(secondNumerator)))*-1;
-//    	} else {
-//        	secondNumer = Integer.parseInt(firstDenominator)*(Integer.parseInt(secondDenominator) * Integer.parseInt(secondWhole) + Integer.parseInt(secondNumerator));
-//    	}
-//    	
-//    	int firstDenom = Integer.parseInt(firstDenominator)* Integer.parseInt(secondDenominator);
-//    	int secondDenom = Integer.parseInt(firstDenominator)* Integer.parseInt(secondDenominator);
-//    	
-//    	
-//
-//    	if (operatorVal.equals("+")) {
-//    			System.out.println(firstNumer + secondNumer);
-//    			System.out.println(firstDenom);
-//    	} else if (operatorVal.equals("-")) {
-//    		System.out.println(firstNumer - secondNumer);
-//			System.out.println(firstDenom);
-//    	} else if (operatorVal.equals("*")) {
-//    		System.out.println(firstNumer * secondNumer);
-//    		System.out.println(firstDenom * secondDenom);
-//    	} else if (operatorVal.equals("/")) {
-//    		System.out.println(firstNumer * secondDenom);
-//    		System.out.println(secondNumer * firstDenom);
-//    	}
-//    	
-//    
+    	int firstNumer;
+    	int secondNumer;
+    	
+    	if (Integer.parseInt(firstWhole) < 0) {
+    		firstNumer = (Integer.parseInt(secondDenominator)*(Integer.parseInt(firstDenominator) * (Integer.parseInt(firstWhole)*-1) + Integer.parseInt(firstNumerator)))*-1;
+    	} else {
+    		firstNumer = Integer.parseInt(secondDenominator)*(Integer.parseInt(firstDenominator) * Integer.parseInt(firstWhole) + Integer.parseInt(firstNumerator));
+    	}
+    	
+    	if (Integer.parseInt(secondWhole) < 0) {
+    		secondNumer = (Integer.parseInt(firstDenominator)*(Integer.parseInt(secondDenominator) * (Integer.parseInt(secondWhole)*-1) + Integer.parseInt(secondNumerator)))*-1;
+    	} else {
+        	secondNumer = Integer.parseInt(firstDenominator)*(Integer.parseInt(secondDenominator) * Integer.parseInt(secondWhole) + Integer.parseInt(secondNumerator));
+    	}
+    	
+    	int firstDenom = Integer.parseInt(firstDenominator)* Integer.parseInt(secondDenominator);
+    	int secondDenom = Integer.parseInt(firstDenominator)* Integer.parseInt(secondDenominator);
+    	
+    	
+
+    	if (operatorVal.equals("+")) {
+    		return ((firstNumer + secondNumer) + "/" + firstDenom);
+    	} else if (operatorVal.equals("-")) {
+    		return ((firstNumer - secondNumer) + "/" + firstDenom);
+    	} else if (operatorVal.equals("*")) {
+    		return ((firstNumer * secondNumer) + "/" + (firstDenom * secondDenom));
+    	} else if (operatorVal.equals("/")) {
+    		return ((firstNumer * secondDenom) + "/" + (secondNumer * firstDenom));
+    	}
+    	
+    	return "";
 
         	
     }
