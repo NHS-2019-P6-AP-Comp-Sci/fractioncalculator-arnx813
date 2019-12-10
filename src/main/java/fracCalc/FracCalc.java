@@ -1,13 +1,13 @@
 /**
  * @author Mr. Rasmussen
  */
-
 package fracCalc;
+import java.lang.Math;
 import java.util.*;
 public class FracCalc {
-	
-	// checkpoint 2
 
+	
+	// the main method initializes scanner that takes in calculation that user wants to solve and calls method produceAnswer and prints the return value
     public static void main(String[] args)
     {
     	Scanner scan = new Scanner(System.in);
@@ -26,18 +26,19 @@ public class FracCalc {
     	String secondWhole = "";
     	String secondNumerator = "";
     	String secondDenominator = "";
+    	
+    	//this for loop iterates through the string and identifies the index in which there is a space, operator, space to essentially break up the string and assign each substring as either the first value, operator or second value
+    	
     	for (int i = 0; i < input.length()-3; i++) {
     		if (input.substring(i,i+1).equals(" ") && input.substring(i+2,i+3).equals(" ") && (input.substring(i+1, i+2).equals("+") || input.substring(i+1, i+2).equals("-") || input.substring(i+1, i+2).equals("*") || input.substring(i+1, i+2).equals("/"))) {
     			firstValue = input.substring(0,i);
     			operatorVal = input.substring(i+1, i+2);
     			secondValue = input.substring(i+3,input.length());
- 		
     		}
-    	} 
-    	
-    	
-    	
+    	}
         	
+    	// checks whether the second and first value are whole numbers, mixed fractions, or a not mixed fraction
+    	
     	if (firstValue.indexOf("_") >= 0 && firstValue.indexOf("/") >= 0) {
     		firstWhole = firstValue.substring(0, firstValue.indexOf("_"));
     		firstNumerator = firstValue.substring(firstValue.indexOf("_")+1, firstValue.indexOf("/"));
@@ -66,10 +67,12 @@ public class FracCalc {
     		secondDenominator = "1";
     	}   
     	
-//    	return "whole:" + secondWhole + " numerator:" + secondNumerator + " denominator:" + secondDenominator;
+    	
     	
     	int firstNumer;
     	int secondNumer;
+    	
+    	//converting the second and first value such that there is no whole value just a numerator or denominator
     	
     	if (Integer.parseInt(firstWhole) < 0) {
     		firstNumer = (Integer.parseInt(secondDenominator)*(Integer.parseInt(firstDenominator) * (Integer.parseInt(firstWhole)*-1) + Integer.parseInt(firstNumerator)))*-1;
@@ -83,23 +86,57 @@ public class FracCalc {
         	secondNumer = Integer.parseInt(firstDenominator)*(Integer.parseInt(secondDenominator) * Integer.parseInt(secondWhole) + Integer.parseInt(secondNumerator));
     	}
     	
+	
+    	//making the denominators the same
     	int firstDenom = Integer.parseInt(firstDenominator)* Integer.parseInt(secondDenominator);
     	int secondDenom = Integer.parseInt(firstDenominator)* Integer.parseInt(secondDenominator);
+    	int denom = 0;
+    	int numer = 0;
     	
-    	
+    	//calculating the output/value based on the operator
 
     	if (operatorVal.equals("+")) {
-    		return ((firstNumer + secondNumer) + "/" + firstDenom);
+    		numer = firstNumer + secondNumer;
+    		denom = firstDenom;
     	} else if (operatorVal.equals("-")) {
-    		return ((firstNumer - secondNumer) + "/" + firstDenom);
+    		numer = firstNumer - secondNumer;
+			denom = firstDenom;
     	} else if (operatorVal.equals("*")) {
-    		return ((firstNumer * secondNumer) + "/" + (firstDenom * secondDenom));
+    		numer = firstNumer * secondNumer;
+    		denom = firstDenom * secondDenom;
     	} else if (operatorVal.equals("/")) {
-    		return ((firstNumer * secondDenom) + "/" + (secondNumer * firstDenom));
+    		numer = firstNumer * secondDenom;
+    		denom = secondNumer * firstDenom;
+    		
+    		if (denom < 0) {
+    			denom *= -1;
+    			numer *= -1;
+    		}
     	}
     	
-    	return "";
-
-        	
+    	//make sure fraction simplified
+    	
+    	int divider = 1;
+		for (int i = 1; i <= denom; i++) {
+			if ((numer % i==0) && denom % i==0) {
+				divider = i;
+			}
+		}
+		
+		numer /= divider;
+		denom /= divider;
+		
+		//special case for 0, or denominator is 1 and the last else statement makes fraction mixed if possible and returns value
+		
+		if (numer == 0) {
+			return "0";
+		} else if (denom == 1) {
+			return Integer.toString(numer);
+		} else {
+			if (Math.abs(numer) > denom) {
+				return (numer/denom) + "_" + (Math.abs(numer)-(Math.abs(numer)/denom)*denom) + "/" + denom;
+			}
+			return numer + "/" + denom;
+		}        	
     }
 }
